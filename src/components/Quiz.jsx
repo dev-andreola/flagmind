@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Quiz = () => {
   const quizData = [
@@ -20,9 +20,12 @@ const Quiz = () => {
     },
   ];
 
-  const currentQuestion = 0;
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  console.log(quizData[currentQuestion]);
+  const submit = () => {
+    setCurrentQuestion((current) => current + 1);
+    
+  };
 
   return (
     <div className="rounded-lg flex flex-col justify-center items-center bg-white shadow-lg">
@@ -35,62 +38,67 @@ const Quiz = () => {
       </div>
       {/* QUIZ IMAGE CONTAINER */}
       <div className="p-3">
-        <img
-          className="w-72"
-          src="https://www.worldometers.info/img/flags/br-flag.gif"
-        />
+        <img className="w-72" src={quizData[currentQuestion].flag} />
       </div>
       {/* QUIZ ANSWERS CONTAINER */}
       <div className="bg-slate-100 rounded-t-lg p-3 w-2/3">
         <ul className="grid grid-cols-2" id="questionList">
-          <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
-            <input
-              type="radio"
-              name="answer"
-              id="a"
-              className="cursor-pointer"
-            />
-            <label className="cursor-pointer" htmlFor="a">
-              México
-            </label>
-          </li>
-          <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
-            <input
-              type="radio"
-              name="answer"
-              id="b"
-              className="cursor-pointer"
-            />
-            <label className="cursor-pointer" htmlFor="b">
-              Japão
-            </label>
-          </li>
-          <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
-            <input
-              type="radio"
-              name="answer"
-              id="c"
-              className="cursor-pointer"
-            />
-            <label className="cursor-pointer" htmlFor="c">
-              Brazil
-            </label>
-          </li>
-          <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
-            <input
-              type="radio"
-              name="answer"
-              id="d"
-              className="cursor-pointer"
-            />
-            <label className="cursor-pointer" htmlFor="d">
-              Bulgaria
-            </label>
-          </li>
+          <label className="cursor-pointer" htmlFor="a">
+            <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
+              <input
+                type="radio"
+                name="answer"
+                id="a"
+                className="cursor-pointer"
+              />
+
+              {quizData[currentQuestion].a}
+            </li>
+          </label>
+          <label className="cursor-pointer" htmlFor="b">
+            <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
+              <input
+                type="radio"
+                name="answer"
+                id="b"
+                className="cursor-pointer"
+              />
+
+              {quizData[currentQuestion].b}
+            </li>
+          </label>
+          <label className="cursor-pointer" htmlFor="c">
+            <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
+              <input
+                type="radio"
+                name="answer"
+                id="c"
+                className="cursor-pointer"
+              />
+
+              {quizData[currentQuestion].c}
+            </li>
+          </label>
+          <label className="cursor-pointer" htmlFor="d">
+            <li className="p-1 m-1 flex items-center justify-start gap-x-1 bg-slate-200 rounded-lg cursor-pointer">
+              <input
+                type="radio"
+                name="answer"
+                id="d"
+                className="cursor-pointer"
+              />
+
+              {quizData[currentQuestion].d}
+            </li>
+          </label>
         </ul>
       </div>
       {/* QUIZ SUBMIT BUTTON */}
-      <button className="py-3 text-white font-bold tracking-widest uppercase w-full rounded-b-lg bg-slate-600 hover:bg-slate-500 text-center">
+      <button
+        type="button"
+        onClick={submit}
+        className="py-3 text-white font-bold tracking-widest uppercase w-full rounded-b-lg bg-slate-600 hover:bg-green-800 text-center"
+      >
         Enviar
       </button>
     </div>
